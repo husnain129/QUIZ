@@ -1,25 +1,34 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../utils/baseUrl";
+import axios from "axios";
 
 const UserLoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate(); // Initialize useNavigate hook
 
-  const handleLogin = () => {
-    const userUsername = "user";
-    const userPassword = "password";
 
-    if (username === userUsername && password === userPassword) {
-      localStorage.setItem("user", username);
-      navigate("/");
-    } else {
-      setError("Invalid username or password");
-    }
+  const handleInputChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${BASE_URL}/user/login`, form);
+      console.log(response.data);
+      localStorage.setItem("user", JSON.stringify(response.data));
+      navigate("/");
+    }
+    catch (error) {
+      console.error("Error creating card:", error);
+    }
+  };
   return (
     <section
       className="vh-100"
@@ -48,7 +57,7 @@ const UserLoginForm = () => {
                 </div>
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                   <div className="card-body p-4 p-lg-5 text-black">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                       <div className="d-flex align-items-center mb-3 pb-1">
                         <i
                           className="fas fa-cubes fa-2x me-3"
@@ -70,9 +79,10 @@ const UserLoginForm = () => {
                         </label>
                         <input
                           type="email"
+                          name="email"
                           id="form2Example17"
                           className="form-control form-control-lg"
-                          onChange={(e) => setUsername(e.target.value)}
+                          onChange={handleInputChange}
                         />
                       </div>
 
@@ -82,9 +92,10 @@ const UserLoginForm = () => {
                         </label>
                         <input
                           type="password"
+                          name="password"
                           id="form2Example27"
                           className="form-control form-control-lg"
-                          onChange={(e) => setPassword(e.target.value)}
+                          onChange={handleInputChange}
                         />
                       </div>
 
@@ -93,8 +104,8 @@ const UserLoginForm = () => {
                           data-mdb-button-init
                           data-mdb-ripple-init
                           className="btn btn-dark btn-lg btn-block"
-                          type="button"
-                          onClick={handleLogin}
+                          type="submit"
+                          
                         >
                           Login
                         </button>

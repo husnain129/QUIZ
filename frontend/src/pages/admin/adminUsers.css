@@ -1,0 +1,46 @@
+/* AdminPage.css */
+/* AdminPage.css */
+
+.admin-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 8px;
+  }
+  
+  .admin-page h2 {
+    color: #eee;
+    margin-bottom: 20px;
+  }
+  
+  .users-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .users-grid th,
+  .users-grid td {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #eee;
+  }
+  
+  .users-grid th {
+    background-color: #222;
+    font-weight: bold;
+  }
+  
+  .users-grid tr:nth-child(even) {
+    background-color: #333;
+  }
+  
+  .loading {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    color: #eee;
+  }
+  

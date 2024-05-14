@@ -6,8 +6,10 @@ import "../../styles/UserDashboard.css";
 import Card from "./Card";
 
 function UserDashboard() {
-  const [questions, setQuestions] = useState([]);
-  const navigate = useNavigate(); // Initialize useNavigate
+const [questions, setQuestions] = useState([
+  
+  // Add more questions as needed
+]);  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,9 +26,14 @@ function UserDashboard() {
   }, []);
 
   const handleCardClick = (question) => {
+    console.log("🚀 ~question sent to /main/quiz", question)
     navigate("/main/quiz", { state: { question } });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('user'); // Remove user from local storage
+    navigate('/login'); // Redirect to login page
+  };
   return (
     <div className="dasboard__container">
       <div style={{ minHeight: "100vh" }}>
@@ -65,6 +72,9 @@ function UserDashboard() {
             ))}
           </div>
         </div>
+      </div>
+      <div className="logout" style={{ position: 'absolute', bottom: '0', left: '0' }}>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

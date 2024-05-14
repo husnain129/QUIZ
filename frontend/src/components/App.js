@@ -73,6 +73,8 @@ import Main from "./Main";
 import ProtectedRoute from "./ProtectedRoute";
 import Quiz from "./Quiz";
 import Result from "./Result";
+import ProfilePage from "../pages/admin/profile";
+import AdminPage from "../pages/admin/adminUsers";
 
 function App() {
   return (
@@ -83,9 +85,17 @@ function App() {
           element={
             <ProtectedRoute>
               <UserDashboard />
+
             </ProtectedRoute>
           }
         />
+
+        <Route path="/profile"  element={
+            <ProtectedRoute>
+              <ProfilePage />
+
+            </ProtectedRoute>
+          } />
 
         <Route path="/login" element={<UserLoginForm />} />
         <Route path="/register" element={<UserRegisterForm />} />
@@ -95,6 +105,7 @@ function App() {
 
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/create-quiz" element={<AdminCreateQuiz />} />
+        <Route path="/admin/users" element={<AdminPage />} />
       </Routes>
     </Router>
   );

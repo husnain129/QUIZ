@@ -8,6 +8,17 @@
   margin: 0 auto;
 }
 
+.container__card_wrapper {
+  width: 100%;
+  min-height: 87vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: white;
+}
+
 .admin-dashboard-heading {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -104,4 +115,44 @@
 
 .modal-content {
   position: relative;
+}
+
+.card {
+  width: 85% !important;
+  background-color: #444;
+  color: #eee;
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  height: 200px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.card-difficulty {
+  font-size: 0.8em;
+  color: #bbb;
+  margin-top: 10px;
+}
+
+.card-difficulty span {
+  color: #f4c150;
+}
+
+.card-difficulty span.unfilled {
+  color: #666;
 }

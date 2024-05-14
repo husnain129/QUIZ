@@ -1,0 +1,66 @@
+/* ProfilePage.css */
+
+.profile-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .profile-details {
+    background-color: #444;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .profile-details h2 {
+    color: #eee;
+    margin-bottom: 20px;
+  }
+  
+  .profile-details div {
+    margin-bottom: 10px;
+    color: #ccc;
+  }
+  
+  .quizzes-taken {
+    background-color: #444;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .quizzes-taken h2 {
+    color: #eee;
+    margin-bottom: 20px;
+  }
+  
+  .quiz-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .quiz-grid th,
+  .quiz-grid td {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #eee;
+  }
+  
+  .quiz-grid th {
+    background-color: #222;
+    font-weight: bold;
+  }
+  
+  .quiz-grid tr:nth-child(even) {
+    background-color: #333;
+  }
+  
+  .loading {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    color: #eee;
+  }
+  

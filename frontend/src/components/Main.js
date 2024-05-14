@@ -15,11 +15,13 @@ export default function Main() {
   const navigate = useNavigate();
   
   function startQuiz() {
+    console.log("🚀 ~ quesyion sent  to main/quin ======>", question)
+    navigate("/main/quiz" , { state: { question } });
+
     if (inputRef.current?.value) {
       dispatch(setUserId(inputRef.current?.value));
     }
-    navigate("/main/quiz" , { state: { question } });
-
+   
   }
 
   return (

@@ -78,32 +78,54 @@
 //         </div>
 //     </div>
 //   )
-// }
-import React from 'react';
+// }import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import '../styles/Result.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetAllAction } from '../redux/question_reducer';
 import { resetResultAction } from '../redux/result_reducer';
+import { BASE_URL } from '../utils/baseUrl';
 
 export default function Result() {
   const dispatch = useDispatch();
   const location = useLocation();
   const newAnswers = location.state.newAnswers;
-  console.log("🚀 ~ Result ~ newAnswers:", newAnswers)
-  const questions = location.state.questionData;
-  console.log("🚀 ~ Result ~ questions:", questions)
+  const questions = location.state.questionData.questions;
 
-const totalQuestions = questions.questions.length;
-const totalAnswered = newAnswers.length;
-const totalCorrect = newAnswers.reduce((count, answerIndex, questionIndex) => {
-  return count + (questions.questions[questionIndex].answers[answerIndex] === questions.questions[questionIndex].correctAnswer ? 1 : 0);
-}, 0);
-const totalWrong = totalAnswered - totalCorrect;
+  const totalQuestions = questions.length;
+  const totalAnswered = newAnswers.length;
+  const totalCorrect = newAnswers.reduce((count, answerIndex, questionIndex) => {
+    const correctAnswerIndex = questions[questionIndex].options.findIndex(option => option === questions[questionIndex].answer);
+    return count + (answerIndex === correctAnswerIndex ? 1 : 0);
+  }, 0);
+  const totalWrong = totalAnswered - totalCorrect;
 
-function onRestart() {
-  // ...
+  // Send the data to the backend API to update/add quizzes taken by the user
+  useEffect(() => {
+    let user = JSON.parse(localStorage.getItem('user'));
+let userId = user._id;
+    console.log("🚀 ~ useEffect ~ userId:", userId)
+    const data = {
+      quizTitle: location.state.questionData.title,
+      difficulty: location.state.questionData.difficulty,
+      achievedPoints: totalCorrect,
+      totalAnswered: totalAnswered,
+      totalQuestions: totalQuestions,
+      userId : userId
+    };
 
+    axios.post(`${BASE_URL}/user/quizzes/update`, data)
+      .then(response => {
+        console.log('Quizzes taken updated successfully:', response.data);
+      })
+      .catch(error => {
+        console.error('Error updating quizzes taken:', error);
+      });
+  }, [location, totalCorrect]);
+
+  function onRestart() {
     dispatch(resetAllAction());
     dispatch(resetResultAction());
   }
@@ -132,8 +154,9 @@ function onRestart() {
       </div>
 
       <div className="start">
-        <Link className='btn' to={'/user/dashboard'} onClick={onRestart}>Restart</Link>
+        <Link className='btn' to={'/'} onClick={onRestart}>Restart</Link>
       </div>
     </div>
   );
 }
+

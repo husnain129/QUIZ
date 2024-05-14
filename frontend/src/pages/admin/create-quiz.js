@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./QuizForm.css"; // Assuming you have created QuizForm.css in the same directory
+import { BASE_URL } from "../../utils/baseUrl";
+import axios from "axios";
 
 const QuizForm = () => {
   const navigate = useNavigate();
@@ -35,9 +37,18 @@ const QuizForm = () => {
   };
 
   // TODO: Replace with your form submit logic
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(quiz);
+    try{
+      const response = await axios.post(`${BASE_URL}/questions`, quiz);
+      console.log(response.data);
+      navigate("/admin");
+
+    }
+    catch(error){
+      console.error("Error creating quiz:", error);
+    }
   };
 
   return (

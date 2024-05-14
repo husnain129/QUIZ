@@ -1,6 +1,5 @@
 // import Questions from "../models/questionSchema.js";
 import Results from "../models/resultSchema.js";
-import questions, { answers } from "../database/data.js";
 import { Quiz, Question } from '../models/questionSchema.js';
 
 

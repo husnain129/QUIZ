@@ -1,27 +1,38 @@
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../utils/baseUrl";
+
 
 const UserRegisterForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate(); // Initialize useNavigate hook
+  const [form, setForm] = useState({ username: "", email: "", password: "" });
 
-  const handleLogin = () => {
-    // Hardcoded user credentials
-    const userUsername = "user";
-    const userPassword = "password";
 
-    if (username === userUsername && password === userPassword) {
-      localStorage.setItem("user", username);
-      navigate("/");
-    } else {
-      setError("Invalid username or password");
-    }
+  const handleInputChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
-
+ const handleLogin = async (e) => {
+  e.preventDefault();
+  console.log(form);
+  try {
+    const response = await axios.post(`${BASE_URL}/user/register`, form);
+    console.log(response.data);
+    navigate("/login");
+  }
+  catch (error) {
+    console.error("Error creating card:", error);
+  }
+};
   return (
+    <>
     <section
       className="vh-100"
       style={{ backgroundColor: " #9A616D", height: "100vh" }}
@@ -46,7 +57,7 @@ const UserRegisterForm = () => {
                 </div>
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                   <div className="card-body p-4 p-lg-5 text-black">
-                    <form>
+                  <form onSubmit={handleLogin}>
                       <div className="d-flex align-items-center mb-3 pb-1">
                         <i
                           className="fas fa-cubes fa-2x me-3"
@@ -68,9 +79,10 @@ const UserRegisterForm = () => {
                         </label>
                         <input
                           type="text"
+                          name="username"
                           id="form2Example17"
                           className="form-control form-control-lg"
-                          onChange={(e) => setUsername(e.target.value)}
+                          onChange={handleInputChange}
                         />
                       </div>
                       <div data-mdb-input-init className="form-outline mb-4">
@@ -79,9 +91,10 @@ const UserRegisterForm = () => {
                         </label>
                         <input
                           type="text"
+                          name="email"
                           id="form2Example17"
                           className="form-control form-control-lg"
-                          onChange={(e) => setUsername(e.target.value)}
+                          onChange={handleInputChange}
                         />
                       </div>
 
@@ -91,9 +104,10 @@ const UserRegisterForm = () => {
                         </label>
                         <input
                           type="password"
+                          name="password"
                           id="form2Example27"
                           className="form-control form-control-lg"
-                          onChange={(e) => setPassword(e.target.value)}
+                          onChange={handleInputChange}
                         />
                       </div>
 
@@ -102,8 +116,8 @@ const UserRegisterForm = () => {
                           data-mdb-button-init
                           data-mdb-ripple-init
                           className="btn btn-dark btn-lg btn-block"
-                          type="button"
-                          onClick={handleLogin}
+                          type="submit"
+                          // onClick={handleLogin}
                         >
                           Register
                         </button>
@@ -137,6 +151,7 @@ const UserRegisterForm = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
