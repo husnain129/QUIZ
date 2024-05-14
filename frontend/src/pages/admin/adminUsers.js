@@ -23,7 +23,7 @@ const AdminPage = () => {
     return <div className="loading">Loading...</div>;
   }
   return (
-    <div className="admin-page">
+    <div className="admin-page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', minHeight: '70vh', marginTop: '3%' }}>
       <h2>All Users Data</h2>
       <table className="users-grid">
         <thead>

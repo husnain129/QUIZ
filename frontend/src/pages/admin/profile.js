@@ -9,6 +9,8 @@ const ProfilePage = ({ match }) => {
 
   useEffect(() => {
  let user = JSON.parse(localStorage.getItem('user'));
+ console.log("🚀 ~ useEffect ~ user: Local storage ", user)
+
 let userId = user._id;
 console.log("🚀 ~ useEffect ~ userId:", userId)
 

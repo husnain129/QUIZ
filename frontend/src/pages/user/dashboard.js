@@ -70,6 +70,8 @@ const [questions, setQuestions] = useState([
             "gridTemplateColumns": "repeat(4, minmax(0, 1fr))",
             width: "100%",
             gap: "20px",
+            padding: "20px",
+            
 
           }} >
             {questions?.map((question, index) => (

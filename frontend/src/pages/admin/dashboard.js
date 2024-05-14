@@ -47,6 +47,11 @@ return (
           <i className="fas fa-chart-bar"></i>
           <span>Quiz</span>
         </div>
+        <div className="admin-sidebar-item">
+          <i className="fas fa-chart-bar"></i>
+          <span onClick={() => navigate("/admin/users")}>Users</span>
+
+        </div>
         {/* ... other sidebar items ... */}
       </div>
       <div className="mt-auto admin-sidebar-item" >
