@@ -35,7 +35,7 @@ To install Project Name, follow these steps:
 
 5. Open a new terminal window and navigate to the frontend directory:
     ```sh
-    cd ../frontend
+    cd frontend
     ```
 
 6. Install the required packages:
