@@ -73,10 +73,10 @@ return (
               className="col-lg-4 col-md-6 col-sm-12 mb-4"
               onClick={() => handleCardClick(question)}
             >
-              <div className="card h-100">
-                <div className="card-body">
-                  <h2 className="card-title">{question.title}</h2>
-                  <div className="card-difficulty">
+              <div className="admin__card h-100">
+                <div className="admin__card-body">
+                  <h2 className="admin__card-title">{question.title}</h2>
+                  <div className="admin__card-difficulty">
                     Difficulty: {question.difficulty} 
                     <span>
                       {"★".repeat(getDifficultyLevel(question.difficulty))}

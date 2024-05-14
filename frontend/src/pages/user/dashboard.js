@@ -34,6 +34,9 @@ const [questions, setQuestions] = useState([
     localStorage.removeItem('user'); // Remove user from local storage
     navigate('/login'); // Redirect to login page
   };
+  const handleProfileClick = () => {
+    navigate('/profile');
+  }
   return (
     <div className="dasboard__container">
       <div style={{ minHeight: "100vh" }}>
@@ -55,19 +58,26 @@ const [questions, setQuestions] = useState([
               }}
             >
               <p className="nav_item">Quiz</p>
-              <p className="nav_item">Profile</p>
+              <p className="nav_item" onClick={handleProfileClick}>Profile</p>
             </div>
           </div>
         </div>
 
         <div className="container__card_wrapper">
           <h2>Welcome to your dashboard</h2>
-          <div className="">
+          <div style={{
+            display: "grid" ,
+            "gridTemplateColumns": "repeat(4, minmax(0, 1fr))",
+            width: "100%",
+            gap: "20px",
+
+          }} >
             {questions?.map((question, index) => (
               <Card
                 key={index}
                 question={question}
                 handleCardClick={handleCardClick}
+                
               />
             ))}
           </div>

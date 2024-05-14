@@ -117,7 +117,7 @@
   position: relative;
 }
 
-.card {
+.admin__card {
   width: 85% !important;
   background-color: #444;
   color: #eee;
@@ -130,29 +130,29 @@
   transition: 0.3s;
 }
 
-.card:hover {
+.admin__card:hover {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
-.card-body {
+.admin__card-body {
   padding: 20px;
 }
 
-.card-title {
+.admin__card-title {
   font-size: 1.5em;
   font-weight: bold;
 }
 
-.card-difficulty {
+.admin__card-difficulty {
   font-size: 0.8em;
   color: #bbb;
   margin-top: 10px;
 }
 
-.card-difficulty span {
+.admin__card-difficulty span {
   color: #f4c150;
 }
 
-.card-difficulty span.unfilled {
+.admin__card-difficulty span.unfilled {
   color: #666;
 }
